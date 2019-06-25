@@ -1,0 +1,26 @@
+{
+  "name": "monad-practice",
+  "version": "0.1.0",
+  "description": "The tools of functional programming: functor, applicative functor, monad, in TypeScript.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "TypeScript",
+    "JavaScript"
+  ],
+  "author": "c6h4clch3",
+  "license": "MIT",
+  "dependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/webpack-env": "^1.13.9",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "tsc": "^1.20150623.0",
+    "typescript": "^3.4.5",
+    "webpack-env": "^0.8.0"
+  }
+}
