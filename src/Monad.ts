@@ -102,10 +102,45 @@ class Just<T extends {}> implements Applicative<T>, Monad<T> {
     return this;
   }
 }
-const just = <T extends {}>(value: T) => new Just(value);
+const just = <T>(value?: T): MayBe<T> =>
+  value != undefined ? new Just(value) : new Nothing();
 
-const none = nothing<number>();
+const none = just<number>();
 const twelve = just(12);
+const numToStr = (val: number) => just(val.toString());
+const add3 = (val: number) => just(val + 3);
 const log = <T>(maybe: MayBe<T>) => maybe.tap();
 log(none);
 log(twelve);
+
+console.log("モナド則の検証");
+const ret = <T>(x: T) => just(x);
+
+// return x >>= f ≡ f x
+ret(12)
+  .flatMap(numToStr)
+  .tap(() => console.log("return x >>= f: "))
+  .tap();
+numToStr(12)
+  .tap(() => console.log("f x: "))
+  .tap();
+
+// m >>= return ≡ m
+just(12)
+  .flatMap(ret)
+  .tap(() => console.log("m >>= return: "))
+  .tap();
+just(12)
+  .tap(() => console.log("m: "))
+  .tap();
+
+// (m >>= f) >>= g ≡ m >>= (\x -> (f x >>= g))
+twelve
+  .flatMap(add3)
+  .flatMap(numToStr)
+  .tap(() => console.log("(m >>= f) >>= g: "))
+  .tap();
+twelve
+  .flatMap(x => add3(x).flatMap(numToStr))
+  .tap(() => console.log("m >>= (\\x -> (f x >>= g))"))
+  .tap();
