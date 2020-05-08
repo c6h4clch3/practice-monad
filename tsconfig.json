@@ -10,7 +10,7 @@
     "newLine": "lf",
     "outDir": "dist",
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-    "types": ["webpack-env", "mocha", "chai"]
+    "types": ["mocha", "chai"]
   },
   "include": ["src/**/*.ts"]
 }
